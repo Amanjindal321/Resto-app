@@ -77,14 +77,23 @@ return (
 
         <div className="">
             <ul className=" flex gap-8">
-                <li className="cursor-pointer hover:text-blue-400 hover:underline">Home</li>
-                <li className="cursor-pointer hover:text-blue-400 hover:underline">About</li>
+                <li className="cursor-pointer hover:text-blue-400 hover:underline"
+                    onClick={()=> router.push('/')}>
+                Home</li>
+
+                <li className="cursor-pointer hover:text-blue-400 hover:underline"
+                    onClick={()=> router.push('/about')}>
+                About</li>
                 {
                     details && details.name?
                     <>
                     <li className="cursor-pointer hover:text-blue-400 hover:underline" onClick={logout}>Logout</li>
-                    <li className="cursor-pointer hover:text-blue-400 hover:underline">Profile</li>
-                    </>: <li className="cursor-pointer hover:text-blue-400 hover:underline">Login/SignUp</li>
+                    <li className="cursor-pointer hover:text-blue-400 hover:underline" 
+                        onClick={()=> router.push('/restaurant/profile')}>
+                    Profile</li>
+                    </>: <li className="cursor-pointer hover:text-blue-400 hover:underline"
+                            onClick={()=> router.push('/restaurant')}
+                        >Login/SignUp</li>   //Login/
                 }
             </ul>
         </div>
