@@ -14,7 +14,7 @@ const AddFoodItem=()=>{
             setError(true)
             return false;
         }else{
-            setError(false)
+            setError(false);
         }
         let resto_id;
         const restaurantData=JSON.parse(localStorage.getItem("restaurantUser"));
