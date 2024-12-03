@@ -19,6 +19,7 @@ const RestaurantLogin=()=>{
         }
         let response= await fetch("http://localhost:3000/api/restaurant",{
             method:'POST',
+            mode: 'no-cors', // changeee
             body :JSON.stringify({email, password, login:true})
         })
         response=await response.json();
