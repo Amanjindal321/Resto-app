@@ -19,7 +19,7 @@ const RestaurantLogin=()=>{
         }
         let response= await fetch("http://localhost:3000/api/restaurant",{
             method:'POST',
-           // mode: 'no-cors', //
+            mode: 'no-cors', //
             headers:{
                 'Content-Type': 'application/json',
             },
