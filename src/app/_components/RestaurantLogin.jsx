@@ -19,27 +19,20 @@ const RestaurantLogin=()=>{
         }
         let response= await fetch("http://localhost:3000/api/restaurant",{
             method:'POST',
-            mode: 'no-cors', //
-            headers:{
-                'Content-Type': 'application/json',
-            },
+            mode: 'no-cors', // chnagee
             body :JSON.stringify({email, password, login:true})
-        });
-        if(response.ok){
-       const data=await response.json(); // response
-        if(data.success){  //response
-            const {result}=data;  //response
+        })
+        response=await response.json();
+        if(response.success){
+            const {result}=response;
             delete result.password;
-            localStorage.setItem("restaurantUser", JSON.stringify(result));
+            localStorage.setItem("restaurantUser", JSON.stringify(result))
             router.push("/restaurant/dashboard")
             alert("Login Successfull")
         } else{
             alert("Login Failed! Invalid Login Details")
         }
-    }else{   // change
-        alert("Server error try again") //change//
-    }
-
+    
         console.log(email, password);
     }
     
