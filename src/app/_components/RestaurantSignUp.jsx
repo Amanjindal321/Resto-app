@@ -12,6 +12,8 @@ const RestaurantSignUp=()=>{
    const [passwordError, setPasswordError]=useState(false);
    const [phone, setPhone]=useState('');
    const [address, setAddress]=useState('');
+   const [city, setCity]=useState('');
+   const [restaurantName, setRestaurantName]=useState('');
    const [error, setError]=useState(false);
    const router= useRouter();
 
@@ -25,21 +27,21 @@ const RestaurantSignUp=()=>{
         setPasswordError(false);
     }
 
-    if(!name || !email || !password || !phone || !address){
+    if(!name || !email || !password || !phone || !address || !city || !restaurantName){
         setError(true);
         return false
     } else{
         setError(false);
     }
 
-    console.log(name, email, password, phone, address)
+    console.log(name, email, password, phone, address, city, restaurantName)
     let response=await fetch("http://localhost:3000/api/restaurant", {
         method:"POST",
         mode: 'no-cors',  // changeeee
         headers: {
             'Content-Type': 'application/json', // changgggg
         },
-        body:JSON.stringify({name, email, password, phone, address})
+        body:JSON.stringify({name, email, password, phone, address, city, restaurantName})
     })
 
     response=await response.json();
@@ -100,6 +102,20 @@ const RestaurantSignUp=()=>{
                         <input className="border border-gray-500 px-2 py-1 rounded-md" type="text" placeholder="Enter Your Full Address" value={address} onChange={(e)=>setAddress(e.target.value)}/>
                         {
                             error && !address && <span className=" text-red-500">Please Enter Your Valid Address</span>
+                        }
+                    </div>
+                        {/* city */}
+                    <div>
+                        <input className="border border-gray-500 px-2 py-1 rounded-md" type="text" placeholder="Enter Your City" value={city} onChange={(e)=>setCity(e.target.value)}/>
+                        {
+                            error && !city && <span className=" text-red-500">Please Enter Your City</span>
+                        }
+                    </div>
+                        {/* restaurantName */}
+                    <div>
+                        <input className="border border-gray-500 px-2 py-1 rounded-md" type="text" placeholder="Enter Your Restaurant Name" value={restaurantName} onChange={(e)=>setRestaurantName(e.target.value)}/>
+                        {
+                            error && !restaurantName && <span className=" text-red-500">Please Enter Your Valid Restaurant Name</span>
                         }
                     </div>
         
