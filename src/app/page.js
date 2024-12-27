@@ -7,7 +7,7 @@ export default function Home() {
     
    <div>
       <CustomerHeader />
-      <div className="min-h-screen ">
+      {/* <div className="min-h-screen ">
       <div className="bg-[url('/banner1.jpg')] bg-no-repeat bg-cover min-h-[530px] bg-slate-500 bg-blend-multiply">
         <h1 className="text-white text-2xl font-bold text-center pt-14 pb-3">Food Deliver App</h1>
       
@@ -16,9 +16,9 @@ export default function Home() {
         <div className="h-10 w-[2px] bg-gray-300 "></div>
         <input type="text" placeholder="Enter Food or Restaurant Name"className="px-5 py-2 border-1-2 outline-none w-1/3"/>
       </div>
-      </div>
+      </div> */}
       {/* <h1 className="text-red-400 text-2xl">Home</h1> */}
-      </div>
+      {/* </div> */}
       {/* <Footer /> */}
       
    </div>
