@@ -1,14 +1,7 @@
-
-import cors from 'cors';
-
 import { connectionStr } from "@/app/lib/db";
 import { restaurantSchema } from "@/app/lib/restaurantsModel";
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
-
-app.use(cors({
-    origin:"http://localhost:3000/api/customer"
-}));
 
 export async function GET(){
     await mongoose.connect(connectionStr);
