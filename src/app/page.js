@@ -259,9 +259,7 @@ export default function Home() {
         url += `?${queryParams.join("&")}`;
       }
 
-      const response = await fetch(url,{  // {mode:no-cors}
-        mode:"no-cors",
-      });
+      const response = await fetch(url);
       const data = await response.json();
 
       if (data.success) {
@@ -276,7 +274,10 @@ export default function Home() {
 
   const loadLocations = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/customer/locations");
+      const response = await fetch("http://localhost:3000/api/customer/locations",{
+        mode:'no-cors',
+      });
+      
       const data = await response.json();
       if (data.success) {
         const formattedLocations = data.result.map((item, index) => ({
