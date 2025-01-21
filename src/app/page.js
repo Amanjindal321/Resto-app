@@ -259,7 +259,9 @@ export default function Home() {
         url += `?${queryParams.join("&")}`;
       }
 
-      const response = await fetch(url);
+      const response = await fetch(url,{  // {mode:no-cors}
+        mode:"no-cors",
+      });
       const data = await response.json();
 
       if (data.success) {
