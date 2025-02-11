@@ -231,8 +231,10 @@
 
 
 "use client";
+import { useRouter } from "next/navigation";
 import CustomerHeader from "./_components/CustomerHeader";
 import { useEffect, useState } from "react";
+import Header from "./_components/Header";
 
 export default function Home() {
   const [locations, setLocations] = useState([]);
@@ -240,6 +242,8 @@ export default function Home() {
   const [showLocation, setShowLocation] = useState(false);
   const [restaurants, setRestaurants] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+
+  const router=useRouter();
 
   useEffect(() => {
     loadLocations();
@@ -302,11 +306,12 @@ export default function Home() {
 
   return (
     <div>
-      <CustomerHeader />
+      {/* <CustomerHeader /> */}
+      <Header/>
       <div className="min-h-screen">
         <div className="bg-[url('/banner1.jpg')] bg-no-repeat bg-cover min-h-[530px] bg-slate-500 bg-blend-multiply">
           <h1 className="text-white text-2xl font-bold text-center pt-14 pb-3">
-            Food Deliver App
+            Resto Deliver App
           </h1>
 
           <div className="flex items-center justify-center pt-18">
@@ -357,6 +362,7 @@ export default function Home() {
             <div
               key={item.id || index}
               className="bg-yellow-500 m-2 p-4 rounded-md shadow-md w-72"
+              onClick={()=>router.push('explore/'+item.restaurantName+"?id="+item._id)}
             >
               <div className="font-bold text-lg text-center mb-2">
                 {item.restaurantName}

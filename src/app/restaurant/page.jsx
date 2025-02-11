@@ -9,7 +9,7 @@ const Restaurant=()=>{
     return(
         <div className=" text-center p-5 font-semibold">
             <Header/>
-            <h1 className="text-3xl">Restaurant Login/SignUp Page</h1>
+            {/* <h1 className="text-3xl">Restaurant Login/SignUp Page</h1> */}
 
             <div>
                 {

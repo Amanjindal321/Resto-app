@@ -8,5 +8,6 @@ export async function GET(){
     let result=await restaurantSchema.find();
     result = result.map((item)=>item.city);
 
+    result=[...new Set(result.map((item)=>item))]
     return NextResponse.json({success:true, result})
 }

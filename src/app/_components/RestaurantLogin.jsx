@@ -39,7 +39,7 @@ const RestaurantLogin=()=>{
 
     return(
         <div>
-            <h2 className="text-2xl mt-5">Restaurant Login Page</h2>
+            <h2 className="text-3xl mt-5">Restaurant Login Page</h2>
 
             <div>
                 <form className="flex flex-col gap-4">

@@ -1,6 +1,62 @@
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
-const CustomerHeader=()=>{
+const CustomerHeader=(props)=>{
+    console.log(props)
+    const cartStorage=JSON.parse(localStorage.getItem('cart'));  // change1
+    const [cartNumber,setCartNumber]=useState(cartStorage?.length);
+    const [cartItem, setCartItem]=useState(cartStorage)  
+
+    // const [cartItem, setCartItem]=useState([])
+
+    // useEffect(()=>{
+    //     if(typeof window !== "undefined"){
+    //         const cartStorage=JSON.parse(localStorage.getItem("cart")) || [];    // change1
+    //         setCartItem(cartStorage);
+    //         setCartNumber(cartStorage.length);
+    //     }
+    // },[])
+
+    useEffect(()=>{
+        if(props.cartData){
+            console.log(props)
+            if(cartNumber){
+                if(cartItem[0].resto_id!=props.cartData.resto_id){
+                    localStorage.removeItem('cart');
+                    setCartNumber(1);
+                    setCartItem([props.cartData])
+                    localStorage.setItem('cart', JSON.stringify([props.cartData]))
+                }else{
+                    let localCartItem=cartItem;
+                localCartItem.push(JSON.parse(JSON.stringify(props.cartData)))
+                setCartItem(localCartItem);
+                setCartNumber(cartNumber+1)
+                localStorage.setItem('cart',JSON.stringify(localCartItem))
+                }
+                
+            }else{
+                setCartNumber(1)
+                setCartItem([props.cartData])
+                localStorage.setItem('cart',JSON.stringify([props.cartData]))
+            }
+            
+        }
+    }, [props.cartData])
+
+    useEffect(()=>{
+        if(props.removeCartData){
+            let localCartItem=cartItem.filter((item)=>{
+                return item._id!=props.removeCartData
+            })
+            setCartItem(localCartItem);
+            setCartNumber(cartNumber-1)
+            localStorage.setItem('cart', JSON.stringify(localCartItem))
+            if(localCartItem.length==0){
+                localStorage.removeItem('cart');
+            }
+        }
+    },[props.removeCartData])
+
     return (
         <header>
             <div className="container mx-auto flex justify-between items-center py-8 px-6 bg-gray-700">
@@ -18,7 +74,7 @@ const CustomerHeader=()=>{
                                     Home  
                             </Link>
                         </li>
-                        <li>
+                        {/* <li>
                             <Link href="/signin" className="text-white hover:text-yellow-200  font-medium transition duration-300">
                                     Sign In
                                
@@ -28,10 +84,15 @@ const CustomerHeader=()=>{
                             <Link href="/signup"className="text-white hover:text-yellow-200 font-medium transition duration-300">
                                     Sign Up   
                             </Link>
-                        </li>
+                        </li> */}
                         <li>
                             <Link href="/cart"className="text-white hover:text-yellow-200 font-medium transition duration-300">
-                                    Cart (0)  
+                                    Cart ({cartNumber ? cartNumber : 0})  
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/about" className="text-white hover:text-yellow-200  font-medium transition duration-300">
+                                    About
                             </Link>
                         </li>
                         <li>

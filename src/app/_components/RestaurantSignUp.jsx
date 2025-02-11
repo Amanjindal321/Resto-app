@@ -59,7 +59,7 @@ const RestaurantSignUp=()=>{
     return(
         <div>
             {/* <Header/> */}
-            <h2 className="mt-5">Restaurant SignUp Page</h2>
+            <h2 className="mt-5 text-3xl">Restaurant SignUp Page</h2>
 
             <div>
                 <form className=" flex flex-col gap-4">

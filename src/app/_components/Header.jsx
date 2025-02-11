@@ -66,34 +66,34 @@ return (
     //     </div>
     // </header>
 
-    <div className=" bg-blue-100 flex justify-between p-11 items-center">
+    <div className=" bg-gray-600 flex justify-between p-8 items-center">
         {/* left section */}
 
         <div className=" flex-1">
-            {/* <img src="/logo-resto.jpg" width={100} height={100} className="rounded-md"/> */}
+            <img src="/logo.jpg"  className="rounded-md w-20 h-16"/>
         </div>
 
         {/* Right Section */}
 
         <div className="">
             <ul className=" flex gap-8">
-                <li className="cursor-pointer hover:text-blue-400 hover:underline"
+                <li className=" text-white cursor-pointer hover:text-blue-400 hover:underline"
                     onClick={()=> router.push('/')}>
                 Home</li>
 
-                <li className="cursor-pointer hover:text-blue-400 hover:underline"
+                <li className="text-white cursor-pointer hover:text-blue-400 hover:underline"
                     onClick={()=> router.push('/about')}>
                 About</li>
                 {
                     details && details.name?
                     <>
-                    <li className="cursor-pointer hover:text-blue-400 hover:underline" onClick={logout}>Logout</li>
-                    <li className="cursor-pointer hover:text-blue-400 hover:underline" 
+                    <li className="cursor-pointer hover:text-blue-400 hover:underline text-white" onClick={logout}>Logout</li>
+                    <li className="cursor-pointer hover:text-blue-400 hover:underline text-white" 
                         onClick={()=> router.push('/restaurant/profile')}>
                     Profile</li>
-                    </>: <li className="cursor-pointer hover:text-blue-400 hover:underline"
+                    </>: <li className="cursor-pointer hover:text-blue-400 hover:underline text-white"
                             onClick={()=> router.push('/restaurant')}
-                        >Login/SignUp</li>   //Login/
+                        >Log-in</li>   //Login/
                 }
             </ul>
         </div>
