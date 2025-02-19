@@ -1,21 +1,36 @@
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const CustomerHeader=(props)=>{
     console.log(props)
-    const cartStorage=JSON.parse(localStorage.getItem('cart'));  // change1
-    const [cartNumber,setCartNumber]=useState(cartStorage?.length);
-    const [cartItem, setCartItem]=useState(cartStorage)  
+    // const cartStorage=JSON.parse(localStorage.getItem('cart'));  // change1
+    // const [cartNumber,setCartNumber]=useState(cartStorage?.length);
+    // const [cartItem, setCartItem]=useState(cartStorage)  
 
-    // const [cartItem, setCartItem]=useState([])
+    // const userStorage=JSON.parse(localStorage.getItem('user'));
+    // const [user, setUser]=useState(userStorage?userStorage:undefined)
 
-    // useEffect(()=>{
-    //     if(typeof window !== "undefined"){
-    //         const cartStorage=JSON.parse(localStorage.getItem("cart")) || [];    // change1
-    //         setCartItem(cartStorage);
-    //         setCartNumber(cartStorage.length);
-    //     }
-    // },[])
+    const [user, setUser]=useState(undefined);  //change in place of above two lines
+    const [cartItem, setCartItem]=useState([]);
+    const [cartNumber,setCartNumber]=useState(0);
+    const router=useRouter();
+    // console.log(userStorage);
+
+    useEffect(()=>{
+        if(typeof window !== "undefined"){
+            const userStorage=JSON.parse(localStorage.getItem("user"))||null;
+            setUser(userStorage);
+        }
+    },[]);
+
+    useEffect(()=>{
+        if(typeof window !== "undefined"){
+            const cartStorage=JSON.parse(localStorage.getItem("cart")) || [];    // change1
+            setCartItem(cartStorage);
+            setCartNumber(cartStorage.length);
+        }
+    },[])
 
     useEffect(()=>{
         if(props.cartData){
@@ -36,7 +51,7 @@ const CustomerHeader=(props)=>{
                 
             }else{
                 setCartNumber(1)
-                setCartItem([props.cartData])
+                setCartItem([props.cartData]);
                 localStorage.setItem('cart',JSON.stringify([props.cartData]))
             }
             
@@ -50,12 +65,17 @@ const CustomerHeader=(props)=>{
             })
             setCartItem(localCartItem);
             setCartNumber(cartNumber-1)
-            localStorage.setItem('cart', JSON.stringify(localCartItem))
+            localStorage.setItem('cart', JSON.stringify(localCartItem));
             if(localCartItem.length==0){
                 localStorage.removeItem('cart');
             }
         }
     },[props.removeCartData])
+
+    const logout=()=>{
+      localStorage.removeItem('user');  
+      router.push('/user-autht')
+    }
 
     return (
         <header>
@@ -79,14 +99,34 @@ const CustomerHeader=(props)=>{
                                     Sign In
                                
                             </Link>
+                        </li> */}
+                        {
+                            user ?
+                                <>
+                                <li>
+                                    <Link href="/#" className="text-white hover:text-blue-200  font-medium transition duration-300">{user.name}</Link>
+                                </li>
+                                <li>
+                                    <button onClick={logout} className="text-white hover:text-yellow-200  font-medium transition duration-300">Logout</button>
+                                </li>
+                                </>
+                                :
+                            <>
+                            <li>
+                            <Link href="/Login" className="text-white hover:text-yellow-200  font-medium transition duration-300">
+                                   Login
+                               
+                            </Link>
                         </li>
                         <li>
-                            <Link href="/signup"className="text-white hover:text-yellow-200 font-medium transition duration-300">
+                            <Link href="/user-autht" className="text-white hover:text-yellow-200 font-medium transition duration-300">
                                     Sign Up   
                             </Link>
-                        </li> */}
+                        </li>
+                            </>
+                        }
                         <li>
-                            <Link href="/cart"className="text-white hover:text-yellow-200 font-medium transition duration-300">
+                            <Link href={cartNumber?"/cart":"#"} className="text-white hover:text-yellow-200 font-medium transition duration-300">
                                     Cart ({cartNumber ? cartNumber : 0})  
                             </Link>
                         </li>

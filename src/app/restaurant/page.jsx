@@ -3,10 +3,12 @@ import { useState } from "react";
 import RestaurantLogin from "../_components/RestaurantLogin";
 import RestaurantSignUp from "../_components/RestaurantSignUp";
 import Header from "../_components/Header";
+import Footer from "../_components/Footer";
 
 const Restaurant=()=>{
     const [login, setLogin]=useState(true)
     return(
+        <>
         <div className=" text-center p-5 font-semibold">
             <Header/>
             {/* <h1 className="text-3xl">Restaurant Login/SignUp Page</h1> */}
@@ -26,6 +28,8 @@ const Restaurant=()=>{
                 </button>
             </div>
         </div>
+        <Footer/>
+        </>
     )
 }
 

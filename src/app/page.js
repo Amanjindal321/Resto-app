@@ -306,8 +306,8 @@ export default function Home() {
 
   return (
     <div>
-      {/* <CustomerHeader /> */}
-      <Header/>
+      <CustomerHeader />
+      {/* <Header/> */}
       <div className="min-h-screen">
         <div className="bg-[url('/banner1.jpg')] bg-no-repeat bg-cover min-h-[530px] bg-slate-500 bg-blend-multiply">
           <h1 className="text-white text-2xl font-bold text-center pt-14 pb-3">
