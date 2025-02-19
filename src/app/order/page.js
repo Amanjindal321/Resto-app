@@ -33,68 +33,68 @@ const [cartStorage, setCartStorage] = useState([]);
 
     const [userStorage,setUserStorage]=useState(JSON.parse(localStorage.getItem('user')));
 
-    // const orderNow=async()=>{
-    //     let user_id=JSON.parse(localStorage.getItem('user'))._id;
-    //     let cart=JSON.parse(localStorage.getItem('cart'));
-    //     let foodItemIds=cart.map((item)=>item._id).toString();
-    //     let deliveryBoy_id='67a748fa08b1910f978d73ad';
-    //     let resto_id=cart[0].resto_id;
-    //     let collection={
-    //         user_id,
-    //         resto_id,
-    //         foodItemIds,
-    //         deliveryBoy_id,
-    //         status:'confirm',
-    //         amount:total
-    //     }
-    //     let response=await fetch('http://localhost:3000/order',{
-    //         method:'POST',
-    //         body:JSON.stringify(collection)
-    //     });
-    //     response=await response.json();
-    //     if(response.success){
-    //         alert("Order confirmed")
-    //     }else{
-    //         alert("Order Not Confirm")
-    //     }
-    //     console.log(collection);
-    // }
-
-
-    const orderNow = async () => {
-        if (!userStorage) {
-            alert("User not logged in!");
-            return;
+    const orderNow=async()=>{
+        let user_id=JSON.parse(localStorage.getItem('user'))._id;
+        let cart=JSON.parse(localStorage.getItem('cart'));
+        let foodItemIds=cart.map((item)=>item._id).toString();
+        let deliveryBoy_id='67a748fa08b1910f978d73ad';
+        let resto_id=cart[0].resto_id;
+        let collection={
+            user_id,
+            resto_id,
+            foodItemIds,
+            deliveryBoy_id,
+            status:'confirm',
+            amount: total +DELIVERY_CHARGES+(total*TAX/100)
         }
-
-        try {
-            let collection = {
-                user_id: userStorage._id,
-                resto_id: cartStorage[0].resto_id,
-                foodItemIds: cartStorage.map(item => item._id).toString(),
-                deliveryBoy_id: '67a748fa08b1910f978d73ad',
-                status: 'confirm',
-                amount: total+DELIVERY_CHARGES+(total*TAX/100),
-            };
-
-            let response = await fetch('http://localhost:3000/api/order', {
-                method: 'POST',
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(collection)
-            });
-
-            let result = await response.json();
-
-            if (result.success) {
-                alert("Order confirmed");
-            } else {
-                alert("Order not confirmed: " + result.message);
-            }
-        } catch (error) {
-            console.error("Error placing order:", error);
-            alert("Something went wrong. Please try again.");
+        let response=await fetch('http://localhost:3000/api/order',{
+            method:'POST',
+            body:JSON.stringify(collection)
+        });
+        response=await response.json();
+        if(response.success){
+            alert("Order confirmed")
+        }else{
+            alert("Order Not Confirm")
         }
-    };
+        console.log(collection);
+    }
+
+
+    // const orderNow = async () => {
+    //     if (!userStorage) {
+    //         alert("User not logged in!");
+    //         return;
+    //     }
+
+    //     try {
+    //         let collection = {
+    //             user_id: userStorage._id,
+    //             resto_id: cartStorage[0].resto_id,
+    //             foodItemIds: cartStorage.map(item => item._id).toString(),
+    //             deliveryBoy_id: '67a748fa08b1910f978d73ad',
+    //             status: 'confirm',
+    //             amount: total+DELIVERY_CHARGES+(total*TAX/100),
+    //         };
+
+    //         let response = await fetch('http://localhost:3000/api/order', {
+    //             method: 'POST',
+    //             headers: { "Content-Type": "application/json" },
+    //             body: JSON.stringify(collection)
+    //         });
+
+    //         let result = await response.json();
+
+    //         if (result.success) {
+    //             alert("Order confirmed");
+    //         } else {
+    //             alert("Order not confirmed: " + result.message);
+    //         }
+    //     } catch (error) {
+    //         console.error("Error placing order:", error);
+    //         alert("Something went wrong. Please try again.");
+    //     }
+    // };
 
     return(<div>
        <CustomerHeader/>
