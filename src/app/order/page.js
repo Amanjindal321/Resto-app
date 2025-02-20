@@ -4,6 +4,7 @@ import CustomerHeader from "../_components/CustomerHeader";
 import Footer from "../_components/Footer";
 import { DELIVERY_CHARGES } from "../lib/constant";
 import { TAX } from "../lib/constant";
+import { useRouter } from "next/navigation";
 
 
 const Page=()=>{
@@ -33,6 +34,15 @@ const [cartStorage, setCartStorage] = useState([]);
 
     const [userStorage,setUserStorage]=useState(JSON.parse(localStorage.getItem('user')));
 
+    const [removeCartData,setRemoveCartData]=useState(false)
+    const router=useRouter();
+
+    // useEffect(()=>{
+    //     if(!total){
+    //         router.push('/')
+    //     }
+    // },[total])
+
     const orderNow=async()=>{
         let user_id=JSON.parse(localStorage.getItem('user'))._id;
         let cart=JSON.parse(localStorage.getItem('cart'));
@@ -54,6 +64,8 @@ const [cartStorage, setCartStorage] = useState([]);
         response=await response.json();
         if(response.success){
             alert("Order confirmed")
+            setRemoveCartData(true)
+            router.push('myprofile')
         }else{
             alert("Order Not Confirm")
         }
@@ -97,7 +109,7 @@ const [cartStorage, setCartStorage] = useState([]);
     // };
 
     return(<div>
-       <CustomerHeader/>
+       <CustomerHeader removeCartData={removeCartData}/>
         {/* //</div> */}
         <div className="total-wrapper">
            <div className="block-1">

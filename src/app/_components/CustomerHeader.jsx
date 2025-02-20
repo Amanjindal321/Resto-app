@@ -113,7 +113,7 @@ const CustomerHeader=(props)=>{
                             user ?
                                 <>
                                 <li>
-                                    <Link href="/#" className="text-white hover:text-blue-200  font-medium transition duration-300">{user.name}</Link>
+                                    <Link href="/myprofile" className="text-white hover:text-blue-200  font-medium transition duration-300">{user.name}</Link>
                                 </li>
                                 <li>
                                     <button onClick={logout} className="text-white hover:text-yellow-200  font-medium transition duration-300">Logout</button>

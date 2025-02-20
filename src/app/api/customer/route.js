@@ -29,3 +29,21 @@ export async function GET(request) {
     // let result=await restaurantSchema.find(filter)
     // return NextResponse.json({success:true, result})
 }
+
+
+
+
+export default function handler(req, res) {
+  res.setHeader("Access-Control-Allow-Credentials", true);
+  res.setHeader("Access-Control-Allow-Origin", "https://resto-app-six.vercel.app");
+  res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS, POST, PUT, DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  // Handle preflight request for CORS
+  if (req.method === "OPTIONS") {
+      res.status(200).end();
+      return;
+  }
+
+  res.json({ success: true, details: { phone: "1234567890" }, foodItems: [] });
+}
