@@ -122,7 +122,7 @@ const CustomerHeader=(props)=>{
                                 :
                             <>
                             <li>
-                            <Link href="/Login" className="text-white hover:text-yellow-200  font-medium transition duration-300">
+                            <Link href="/user-autht" className="text-white hover:text-yellow-200  font-medium transition duration-300">
                                    Login
                                
                             </Link>

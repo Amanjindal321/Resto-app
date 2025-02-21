@@ -129,15 +129,18 @@ useEffect(() => {
             <h2 className="font-bold text-xl mt-2 ml-2">User Details</h2>
            <div className="row">
                 <span>Name </span>
-                <span>{userStorage.name}</span>
+                {/* <span>{userStorage.name}</span> */}
+                <span>{userStorage ? userStorage.name : "Loading..."}</span>
             </div>
             <div className="row">
                 <span>Address </span>
-                <span>{userStorage.address}</span>
+                {/* <span>{userStorage.address}</span> */}
+                <span>{userStorage && userStorage.address}</span>
             </div>
             <div className="row">
                 <span>Mobile </span>
-                <span>{userStorage.mobile}</span>
+                {/* <span>{userStorage.mobile}</span> */}
+                <span>{userStorage && userStorage.mobile}</span>
             </div>
 
             <h2 className="font-bold text-xl mt-2 ml-2">Amount Details</h2>
