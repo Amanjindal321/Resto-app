@@ -3,7 +3,10 @@ import CustomerHeader from "@/app/_components/CustomerHeader";
 import Header from "@/app/_components/Header"
 import { use, useEffect, useState } from "react"
 
-const page=(props)=>{
+// import Image from "next/image"; // Change
+// import { useCallback } from "react"; // change
+
+const Page=(props)=>{
     const params=use(props.params); //change  const name , props.params.name
     const searchParams=use(props.searchParams);
 
@@ -28,12 +31,12 @@ const [removeCartData, setRemoveCartData]=useState();
 
 
 
-    useEffect(()=>{
-        loadRestaurantDetails()
-    }, [])
-    console.log(cartIds);
+    // useEffect(()=>{
+    //     loadRestaurantDetails();
+    // }, [loadRestaurantDetails]) // add loadrestaurantDetails in blank[]
+    // console.log(cartIds);
 
-    const loadRestaurantDetails = async()=>{
+    const loadRestaurantDetails = async()=>{  //ADD useCallBack but now remove
         //const id=props.searchParams.id;
         console.log(id);
         let response=await fetch("http://localhost:3000/api/customer/"+id)
@@ -43,6 +46,11 @@ const [removeCartData, setRemoveCartData]=useState();
             setFoodItems(response.foodItems)
         }
     }
+
+    useEffect(()=>{
+        loadRestaurantDetails();
+    }, []) // add loadrestaurantDetails in blank[]
+    console.log(cartIds);
 
     const addToCart=(item)=>{
         setCartData(item)
@@ -105,4 +113,4 @@ const [removeCartData, setRemoveCartData]=useState();
     )
 }
 
-export default page;
+export default Page;
