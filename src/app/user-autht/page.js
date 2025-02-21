@@ -17,6 +17,12 @@ const UserAutht=(props)=>{
             {
                 login?<UserLogin redirect={props.searchParams}/>:<UserSignUp redirect={props.searchParams} />
             }
+
+            {                                                            //change line 21 to 25
+                login 
+                    ?<UserLogin redirect={props?.searchParams || {}} />
+                    :<UserSignUp redirect={props?.searchParams || {}} />
+            }
             <button onClick={()=>setLogin(!login)} className="mt-1 mb-5 text-blue-900">
                 {login?'Do not have account ? Signup':'Already have an account? login'}
             </button>
