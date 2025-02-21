@@ -32,7 +32,18 @@ const [cartStorage, setCartStorage] = useState([]);
         localStorage.setItem('cart', JSON.stringify(updatedCart));
     };
 
-    const [userStorage,setUserStorage]=useState(JSON.parse(localStorage.getItem('user')));
+    // const [userStorage,setUserStorage]=useState(JSON.parse(localStorage.getItem('user'))); //change (replace this by below)
+
+    const [userStorage, setUserStorage] = useState(null);             // change from 37 to 44 inplace of above
+
+useEffect(() => {
+    if (typeof window !== "undefined") {
+        const user = JSON.parse(localStorage.getItem('user')) || null;
+        setUserStorage(user);
+    }
+}, []);
+
+  
 
     const [removeCartData,setRemoveCartData]=useState(false)
     const router=useRouter();
@@ -44,8 +55,10 @@ const [cartStorage, setCartStorage] = useState([]);
     // },[total])
 
     const orderNow=async()=>{
-        let user_id=JSON.parse(localStorage.getItem('user'))._id;
-        let cart=JSON.parse(localStorage.getItem('cart'));
+        // let user_id=JSON.parse(localStorage.getItem('user'))._id;
+        // let cart=JSON.parse(localStorage.getItem('cart'));   
+        let user_id = userStorage._id; //change
+        let cart = cartStorage;  //change
         let foodItemIds=cart.map((item)=>item._id).toString();
         let deliveryBoy_id='67a748fa08b1910f978d73ad';
         let resto_id=cart[0].resto_id;
