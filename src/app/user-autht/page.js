@@ -14,9 +14,14 @@ const UserAutht=(props)=>{
             <CustomerHeader/>
             <div className="container">
             <h1 className="font-bold text-xl pt-5">{login?'User Login':'User Signup'}</h1>
+
             {
-                login?<UserLogin redirect={props.searchParams}/>:<UserSignUp redirect={props.searchParams} />
+                login? 'User Login' : 'User Signup'
             }
+
+            {/* {
+                login?<UserLogin redirect={props.searchParams}/>:<UserSignUp redirect={props.searchParams} />
+            } */}
 
             {                                                            //change line 21 to 25
                 login 
