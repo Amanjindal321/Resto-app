@@ -17,43 +17,41 @@
 
 
 
-import { connectionStr } from "@/app/lib/db";
-import { customerSchema } from "@/app/lib/customerModel";
-import mongoose from "mongoose";
+import { connectDB } from "@/app/lib/db";
+import { foodSchema } from "@/app/lib/foodsModel";
+import { restaurantSchema } from "@/app/lib/restaurantsModel";
 import { NextResponse } from "next/server";
 
 export async function GET(request, { params }) {
-    const { id } = params; // Get the customer ID from the URL
+    const { id } = params; // Extract restaurant ID
+    console.log("Fetching details for restaurant ID:", id);
 
     try {
-        await mongoose.connect(connectionStr);
-        let customer = await customerSchema.findById(id);
+        await connectDB(); // Ensure MongoDB is connected
 
-        if (!customer) {
-            return NextResponse.json({ success: false, message: "Customer not found" }, { status: 404 });
+        const details = await restaurantSchema.findById(id);
+        if (!details) {
+            return NextResponse.json({ success: false, message: "Restaurant not found" }, { status: 404 });
         }
 
-        const response = NextResponse.json({ success: true, customer });
+        const foodItems = await foodSchema.find({ resto_id: id });
 
-        //  Set CORS Headers
-        response.headers.set("Access-Control-Allow-Origin", "*"); // Change "*" to your frontend domain if needed
-        response.headers.set("Access-Control-Allow-Methods", "GET, OPTIONS");
-        response.headers.set("Access-Control-Allow-Headers", "Content-Type");
-
-        return response;
+        return setCors(NextResponse.json({ success: true, details, foodItems }));
     } catch (error) {
-        console.error("Error fetching customer:", error);
+        console.error("Error fetching restaurant data:", error);
         return NextResponse.json({ success: false, message: "Internal Server Error" }, { status: 500 });
     }
 }
 
-//  Handle Preflight Requests (CORS OPTIONS method)
+// Handle Preflight CORS Requests
 export function OPTIONS() {
-    const response = new NextResponse(null, { status: 204 });
+    return setCors(new NextResponse(null, { status: 204 }));
+}
 
+// Function to Add CORS Headers
+function setCors(response) {
     response.headers.set("Access-Control-Allow-Origin", "*"); // Change "*" to your frontend domain if needed
     response.headers.set("Access-Control-Allow-Methods", "GET, OPTIONS");
     response.headers.set("Access-Control-Allow-Headers", "Content-Type");
-
     return response;
 }
