@@ -28,7 +28,7 @@ const Restaurant=()=>{
                 </button>
             </div>
         </div>
-        <Footer/>
+        {/* <Footer/> */}
         </>
     )
 }
