@@ -123,15 +123,15 @@ const CustomerHeader=(props)=>{
                             <>
                             <li>
                             <Link href="/user-autht" className="text-white hover:text-yellow-200  font-medium transition duration-300">
-                                   Login
+                                   Login/Signup
                                
                             </Link>
                         </li>
-                        <li>
+                        {/* <li>
                             <Link href="/user-autht" className="text-white hover:text-yellow-200 font-medium transition duration-300">
                                     Sign Up   
                             </Link>
-                        </li>
+                        </li> */}
                             </>
                         }
                         <li>

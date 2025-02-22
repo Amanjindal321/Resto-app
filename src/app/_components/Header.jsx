@@ -66,7 +66,7 @@ return (
     //     </div>
     // </header>
 
-    <div className=" bg-gray-600 flex justify-between p-8 items-center">
+    <div className=" container mx-auto flex justify-between items-center py-5 px-3 bg-gray-700">
         {/* left section */}
 
         <div className=" flex-1">
@@ -84,12 +84,17 @@ return (
                 <li className="text-white cursor-pointer hover:text-blue-400 hover:underline"
                     onClick={()=> router.push('/about')}>
                 About</li>
+
+                <li className="text-white cursor-pointer hover:text-blue-400 hover:underline"
+                    onClick={()=> router.push('/contact')}>
+                Contact</li>
+
                 {
                     details && details.name?
                     <>
                     <li className="cursor-pointer hover:text-blue-400 hover:underline text-white" onClick={logout}>Logout</li>
                     <li className="cursor-pointer hover:text-blue-400 hover:underline text-white" 
-                        onClick={()=> router.push('/restaurant/profile')}>
+                        onClick={()=> router.push('/profile')}>
                     Profile</li>
                     </>: <li className="cursor-pointer hover:text-blue-400 hover:underline text-white"
                             onClick={()=> router.push('/restaurant')}
