@@ -96,102 +96,48 @@
 
 
 
+
+
+
 "use client";
 import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import CustomerHeader from "../_components/CustomerHeader";
-import Footer from "../_components/Footer";
 import UserLogin from "../_components/UserLogin";
 import UserSignUp from "../_components/UserSignUp";
 
 const AuthComponent = () => {
     const [login, setLogin] = useState(true);
-    const [alertMessage, setAlertMessage] = useState(null);
-    const [alertType, setAlertType] = useState(""); // "success" or "error"
     const searchParams = useSearchParams();
 
-    console.log("Search Params:", searchParams.toString());
-
-    // Handle login response
-    const handleLoginResponse = (success) => {
-        if (success) {
-            setAlertMessage("Login successful! Redirecting...");
-            setAlertType("success");
-            setTimeout(() => {
-                setAlertMessage(null);
-                window.location.href = searchParams.get("redirect") || "/dashboard"; // Redirect after success
-            }, 2000);
-        } else {
-            setAlertMessage("Invalid credentials! Please try again.");
-            setAlertType("error");
-        }
-    };
-
-    // Handle signup response
-    const handleSignUpResponse = (success) => {
-        if (success) {
-            setAlertMessage("Signup successful! You can now login.");
-            setAlertType("success");
-            setTimeout(() => setAlertMessage(null), 2000);
-        } else {
-            setAlertMessage("Signup failed! Please try again.");
-            setAlertType("error");
-        }
+    // Function to handle login success
+    const handleLoginSuccess = () => {
+        alert("Login Successful!");
+        window.location.href = searchParams.get("redirect") || "/dashboard";
     };
 
     return (
         <div>
             <CustomerHeader />
-
-            {/* Alert Messages */}
-            {alertMessage && (
-                <div
-                    className={`p-3 rounded-md text-center mb-4 ${
-                        alertType === "success" ? "bg-green-500 text-white" : "bg-red-500 text-white"
-                    }`}
-                >
-                    {alertMessage}
-                </div>
-            )}
-
-            <div className="container">
-                <h1 className="font-bold text-xl pt-5">
-                    {login ? "User Login" : "User Signup"}
-                </h1>
-
+            <div className="container text-center">
+                <h1 className="font-bold text-xl pt-5">{login ? "User Login" : "User Signup"}</h1>
                 {login ? (
-                    <UserLogin 
-                        redirect={searchParams.get("redirect") || {}} 
-                        onLoginResponse={handleLoginResponse} 
-                    />
+                    <UserLogin onSuccess={handleLoginSuccess} />
                 ) : (
-                    <UserSignUp 
-                        redirect={searchParams.get("redirect") || {}} 
-                        onSignUpResponse={handleSignUpResponse} 
-                    />
+                    <UserSignUp />
                 )}
-
-                <button
-                    onClick={() => setLogin(!login)}
-                    className="mt-1 mb-5 text-blue-900"
-                >
-                    {login ? "Do not have an account? Signup" : "Already have an account? Login"}
+                <button onClick={() => setLogin(!login)} className="mt-2 text-blue-900">
+                    {login ? "Don't have an account? Signup" : "Already have an account? Login"}
                 </button>
             </div>
         </div>
     );
 };
 
-const UserAutht = () => {
-    return (
-        <Suspense fallback={<div>Loading...</div>}>
-            <AuthComponent />
-        </Suspense>
-    );
-};
+const UserAutht = () => (
+    <Suspense fallback={<div>Loading...</div>}>
+        <AuthComponent />
+    </Suspense>
+);
 
 export default UserAutht;
-
-
-
-
