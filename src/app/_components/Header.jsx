@@ -98,7 +98,7 @@ return (
                     Profile</li>
                     </>: <li className="cursor-pointer hover:text-blue-400 hover:underline text-white"
                             onClick={()=> router.push('/restaurant')}
-                        >Login</li>   //Login/
+                        ></li>   //Login/
                 }
             </ul>
         </div>

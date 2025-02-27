@@ -18,16 +18,16 @@ const Contact = () => {
                     </p>
 
                     <div className="mt-6 grid md:grid-cols-3 gap-6">
-                        <div className="p-6 border rounded-lg shadow-md bg-gradient-to-b from-green-200 to-green-100 hover:scale-105 transition">
-                            <h3 className="text-2xl font-semibold text-green-700">📍 Location</h3>
+                        <div className="p-6 border rounded-lg bg-gray-200 hover:scale-105 transition">
+                            <h3 className="text-2xl font-semibold text-black-700">📍 Location</h3>
                             <p className="text-gray-700 mt-2">123 Food Street,  City</p>
                         </div>
-                        <div className="p-6 border rounded-lg shadow-md bg-gradient-to-b from-yellow-200 to-yellow-100 hover:scale-105 transition">
-                            <h3 className="text-2xl font-semibold text-yellow-700">📞 Phone</h3>
+                        <div className="p-6 border rounded-lg bg-gray-200 hover:scale-105 transition">
+                            <h3 className="text-2xl font-semibold text-black-700">📞 Phone</h3>
                             <p className="text-gray-700 mt-2">+123 456 7890</p>
                         </div>
-                        <div className="p-6 border rounded-lg shadow-md bg-gradient-to-b from-pink-200 to-pink-100 hover:scale-105 transition">
-                            <h3 className="text-2xl font-semibold text-pink-700">📧 Email</h3>
+                        <div className="p-6 border rounded-lg bg-gray-200 hover:scale-105 transition">
+                            <h3 className="text-2xl font-semibold text-black-700">📧 Email</h3>
                             <p className="text-gray-700 mt-2">support@restaurant.com</p>
                         </div>
                     </div>

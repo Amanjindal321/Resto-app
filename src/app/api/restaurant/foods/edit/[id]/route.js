@@ -39,21 +39,21 @@ import { foodSchema } from "@/app/lib/foodsModel";
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 
-// ✅ Function to set CORS headers
+//  Function to set CORS headers
 function setCORSHeaders(response) {
     response.headers.set("Access-Control-Allow-Credentials", "true");
-    response.headers.set("Access-Control-Allow-Origin", "https://resto-mp4ekiew9-aman-jindals-projects.vercel.app"); // ✅ Change to your frontend URL
+    // response.headers.set("Access-Control-Allow-Origin", "https://resto-mp4ekiew9-aman-jindals-projects.vercel.app"); //  Change to your frontend URL
     response.headers.set("Access-Control-Allow-Methods", "GET, PUT, OPTIONS");
     response.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
     return response;
 }
 
-// ✅ Handle OPTIONS request (for CORS preflight)
+//  Handle OPTIONS request (for CORS preflight)
 export async function OPTIONS() {
     return setCORSHeaders(new NextResponse(null, { status: 204 }));
 }
 
-// ✅ GET request (fetch food by ID)
+//  GET request (fetch food by ID)
 export async function GET(request, content) {
     const id = content.params.id;
     let success = false;
@@ -68,7 +68,7 @@ export async function GET(request, content) {
     return setCORSHeaders(response);
 }
 
-// ✅ PUT request (update food by ID)
+//  PUT request (update food by ID)
 export async function PUT(request, content) {
     const id = content.params.id;
     const payload = await request.json();

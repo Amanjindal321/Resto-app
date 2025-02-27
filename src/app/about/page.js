@@ -42,17 +42,18 @@ const About = () => {
                 {/* Contact Section */}
                 <section className="max-w-4xl mx-auto mt-8 bg-white shadow-lg rounded-lg p-6 text-center">
                     <h2 className="text-4xl font-bold mb-4 text-indigo-600">Contact Us</h2>
-                    <p className="text-lg text-gray-700">📍 123 Food Street,  City</p>
-                    <p className="text-lg text-gray-700">📞 +123 456 7890</p>
-                    <p className="text-lg text-gray-700">📧 support@restaurant.com</p>
+                    <p className="text-lg text-gray-700"> 123 Food Street,  City</p> 
+                    <p className="text-lg text-gray-700"> +123 456 7890</p>
+                    <p className="text-lg text-gray-700"> support@.com</p>
                 </section>
-
+                {/* 📍📞📧 */}
                 {/* Call to Action */}
                 <div className="text-center mt-10">
                     <a href="/">
-                        <button className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:shadow-xl transform hover:scale-105 transition">
-                            Order Now 🍕
-                        </button>
+                        <button className="bg-orange-500 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:shadow-xl transform hover:scale-105 transition">
+                            Order Now 
+                        </button> 
+                        {/* 🍕 */}
                     </a>
                 </div>
             </main>

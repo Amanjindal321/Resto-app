@@ -27,7 +27,7 @@ export async function GET() {
 
         const response = NextResponse.json({ success: true, result });
 
-        // ✅ Set CORS Headers
+        //  Set CORS Headers
         response.headers.set("Access-Control-Allow-Origin", "*");
         response.headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
         response.headers.set("Access-Control-Allow-Headers", "Content-Type");
@@ -38,7 +38,7 @@ export async function GET() {
     }
 }
 
-// ✅ Handle Preflight Requests
+// Handle Preflight Requests
 export function OPTIONS() {
     const response = new NextResponse(null, { status: 204 });
 

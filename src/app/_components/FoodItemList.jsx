@@ -85,7 +85,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const FoodItemList = () => {
-    const [foodItems, setFoodItems] = useState([]); // Ensure it's an array to avoid mapping issues
+    const [foodItems, setFoodItems] = useState([]); // it's  array to avoid mapping issues
     const router = useRouter();
 
     useEffect(() => {
@@ -95,7 +95,7 @@ const FoodItemList = () => {
     const loadFoodItems = async () => {
         const restaurantData = JSON.parse(localStorage.getItem("restaurantUser"));
 
-        // ✅ Prevent accessing null data
+        // Prevent accessing null data
         if (!restaurantData || !restaurantData._id) {
             console.error("No restaurant data found in localStorage.");
             alert("No restaurant data found. Please log in again.");
