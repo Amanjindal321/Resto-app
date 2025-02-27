@@ -40,6 +40,7 @@ import { NextResponse } from "next/server";
 function setCORSHeaders(response) {
     response.headers.set("Access-Control-Allow-Credentials", "true");
     // response.headers.set("Access-Control-Allow-Origin", "https://resto-mp4ekiew9-aman-jindals-projects.vercel.app"); // Change to your frontend URL
+    response.headers.set("Access-Control-Allow-Origin", "https://resto-app-six.vercel.app");
     response.headers.set("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS");
     response.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
     return response;
