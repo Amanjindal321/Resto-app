@@ -47,7 +47,7 @@ export function OPTIONS() {
 
 // Function to Set CORS Headers
 function setCors(response) {
-    response.headers.set("Access-Control-Allow-Origin", "*"); // Change "*" to your frontend domain if needed
+    response.headers.set("Access-Control-Allow-Origin", "https://resto-app-six.vercel.app"); // Change "*" to your frontend domain if needed
     response.headers.set("Access-Control-Allow-Methods", "POST, OPTIONS");
     response.headers.set("Access-Control-Allow-Headers", "Content-Type");
     return response;
